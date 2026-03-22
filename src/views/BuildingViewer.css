@@ -1,0 +1,340 @@
+.building-viewer {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.scene-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* 文件选择器样式 */
+.file-input {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  width: 200px;
+}
+
+.file-input button {
+  width: 100%;
+  padding: 8px 12px;
+  background: rgba(74, 144, 217, 0.9);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.3s;
+}
+
+.file-input button:hover {
+  background: rgba(53, 122, 189, 0.9);
+}
+
+.file-input input[type='file'] {
+  display: none;
+}
+
+/* 加载提示样式 */
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 18px;
+  z-index: 100;
+  text-align: center;
+}
+
+.loading .progress {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #4a90d9;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 控制面板样式 */
+.controls {
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  width: 300px;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  color: white;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.controls .panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+}
+
+.controls .panel-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.controls .toggle-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.controls .panel-content {
+  padding: 16px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.controls .section {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.controls .section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.controls .section h4 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #87CEEB;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.controls .control-group {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.controls .control-group label {
+  flex: 1;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.controls .control-group input[type="range"] {
+  flex: 2;
+  cursor: pointer;
+}
+
+.controls .control-group input[type="color"] {
+  width: 40px;
+  height: 30px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.controls .value {
+  width: 40px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: right;
+}
+
+.controls .control-group button {
+  flex: 1;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.controls .control-group button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.controls .control-group button.active {
+  background: #4a90d9;
+  border-color: #4a90d9;
+}
+
+.controls .button-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.controls .button-group button {
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.controls .button-group button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.controls .control-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.controls .control-buttons button {
+  flex: 1;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.controls .control-buttons button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.controls .reset-btn {
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.controls .reset-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.controls .rotate-btn {
+  width: 100%;
+  padding: 10px;
+  background: #4a90d9;
+  border: 1px solid #4a90d9;
+  border-radius: 4px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.controls .rotate-btn:hover {
+  background: #357abd;
+}
+
+.controls .panel-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.controls .panel-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.controls .panel-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.controls .panel-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 操作说明样式 */
+.info {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  z-index: 10;
+  font-size: 12px;
+}
+
+.info h3 {
+  margin-bottom: 10px;
+  color: #4a90d9;
+}
+
+.info p {
+  margin: 5px 0;
+  color: #ccc;
+}
+
+.shortcut {
+  color: #4a90d9;
+  font-weight: bold;
+}
+
+/* 返回按钮样式 */
+.back-button {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  z-index: 10;
+  width: 200px;
+}
+
+.back-button button {
+  width: 100%;
+  padding: 8px 12px;
+  background: rgba(74, 144, 217, 0.9);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.3s;
+}
+
+.back-button button:hover {
+  background: rgba(53, 122, 189, 0.9);
+}
