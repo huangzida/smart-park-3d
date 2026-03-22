@@ -33,7 +33,7 @@ function createModelDisplay(scene: THREE.Scene): void {
   modelGroup.name = 'ModelDisplayArea'
 
   // 创建展示基台
-  createDisplayPlatform(scene)
+  createDisplayPlatform()
 
   // 加载模型
   loadModels()
@@ -44,7 +44,7 @@ function createModelDisplay(scene: THREE.Scene): void {
 /**
  * 创建展示基台
  */
-function createDisplayPlatform(scene: THREE.Scene): void {
+function createDisplayPlatform(): void {
   if (!modelGroup) return
 
   // 主展示区基台
@@ -118,7 +118,7 @@ function loadModels(): void {
   ]
 
   // 加载每个模型
-  modelConfigs.forEach((config, index) => {
+  modelConfigs.forEach((config) => {
     loader.load(
       config.path,
       (gltf) => {
